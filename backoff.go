@@ -283,13 +283,13 @@ func (c BackoffTruncatedExponential) Get(attempt uint) time.Duration {
 		return c.maxInterval
 	}
 
-	randomNumberInMillis := time.Duration(c.rand.Int63n(int64(c.baseInterval.Nanoseconds())))
+	randomDurtaion := time.Duration(c.rand.Int63n(int64(c.baseInterval.Nanoseconds())))
 
-	exponential := c.baseInterval*time.Duration(exponentialFactor) + randomNumberInMillis
+	exponential := c.baseInterval*time.Duration(exponentialFactor) + randomDurtaion
 
 	// wrap around to zero value if integer overflow.
 	// return maximum interval.
-	if exponential == 0 || exponential == randomNumberInMillis {
+	if exponential == 0 || exponential == randomDurtaion {
 		return c.maxInterval
 	}
 

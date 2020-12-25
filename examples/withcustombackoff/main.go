@@ -10,14 +10,14 @@ import (
 	"github.com/steveanlorn/retry"
 )
 
-type MyCustomBackOff struct{}
+type myCustomBackOff struct{}
 
-func (m *MyCustomBackOff) Get(attempt uint) time.Duration {
+func (m *myCustomBackOff) Get(attempt uint) time.Duration {
 	return time.Millisecond
 }
 
 func main() {
-	myCustomBackOff := new(MyCustomBackOff)
+	myCustomBackOff := new(myCustomBackOff)
 	err := retry.Do(dummyFunc, retry.WithMaxRetryAttempts(1), retry.WithBackoff(myCustomBackOff))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "could not do dummyFunc: %v\n", err)
