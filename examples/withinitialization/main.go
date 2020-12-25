@@ -37,7 +37,7 @@ func main() {
 		return retrier.Do(dummyFuncC)
 	})
 
-	fmt.Fprintln(os.Stdout, "waiting")
+	_, _ = fmt.Fprintln(os.Stdout, "waiting")
 
 	if err := g.Wait(); err != nil {
 		fmt.Fprintf(os.Stderr, "get error: %v\n", err)

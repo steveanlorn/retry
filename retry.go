@@ -147,9 +147,5 @@ func (r *Retrier) isRetryable(attempt uint, err error) bool {
 	}
 
 	var unretryableError *UnretryableError
-	if errors.As(err, &unretryableError) {
-		return false
-	}
-
-	return true
+	return !errors.As(err, &unretryableError)
 }

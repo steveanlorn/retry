@@ -39,11 +39,10 @@ func getData() error {
 		return err
 	}
 
-	defer resp.Body.Close()
-
 	if resp.StatusCode == http.StatusBadRequest {
+		_ = resp.Body.Close()
 		return retry.Unretryable(errors.New("error bad request"))
 	}
 
-	return nil
+	return resp.Body.Close()
 }
